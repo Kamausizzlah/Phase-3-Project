@@ -4,7 +4,7 @@
 #### Author: *Ian Kamau*
 
 ## Description  
-This is a friendly CLI (Command Line Interface) Blog Platform built with Python using SQLAlchemy ORM. The platform allows users to register, log in, create posts, delete posts, and comment on posts. The project demonstrates the use of class methods and attributes to organize functionality into manageable modules.
+This is a friendly CLI (Command Line Interface) Blog Platform built with Python using SQLAlchemy ORM. The platform allows users to register, log in, create posts, delete posts, comment on posts and delete comments. The project demonstrates the use of class methods and attributes to organize functionality into manageable modules.
 
 ## Table of Contents
 - [Installation](#installation)

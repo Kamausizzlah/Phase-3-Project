@@ -5,7 +5,7 @@ from models import User, Post, Comment
 import hashlib
 
 def hash_password(password):
-    return hashlib.sha256(password.encode()).hexdigest()
+    return password
 
 def authenticate_user(db: Session, username: str, password: str):
     user = User.get_user(db, username)
@@ -15,7 +15,7 @@ def authenticate_user(db: Session, username: str, password: str):
 
 def user_menu(db: Session, user: User):
     while True:
-        action = prompt("Enter 'create post', 'delete post', 'comment', 'logout': ").strip().lower()
+        action = prompt("Enter 'Create post', 'Delete post', 'Comment', 'Delete comment', 'Logout': ").strip().lower()
         if action == "create post":
             title = prompt("Title: ")
             content = prompt("Content: ")
@@ -32,6 +32,13 @@ def user_menu(db: Session, user: User):
             content = prompt("Comment: ")
             Comment.create_comment(db, content, int(post_id), user.id)
             print("Comment added successfully!")
+        elif action == "delete comment":
+            post_id = prompt("Post ID: ")
+            author_id = prompt("Author ID: ")
+            if Comment.delete_comment(db, int(post_id), int(author_id)):
+                print("Comment deleted successfully!")
+            else:
+                print("Comment not found.")
         elif action == "logout":
             break
         else:
@@ -40,9 +47,9 @@ def user_menu(db: Session, user: User):
 def main():
     init_db()
     db = next(get_db())
-    print("Welcome to the CLI Blog Platform!")
+    print("Welcome to My blog CLI. Enjoy!")
     while True:
-        action = prompt("Enter 'login', 'register', or 'exit': ").strip().lower()
+        action = prompt("Enter 'Login', 'Register', or 'Exit': ").strip().lower()
         if action == "register":
             username = prompt("Username: ")
             password = prompt("Password: ", is_password=True)
