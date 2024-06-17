@@ -2,7 +2,6 @@ from sqlalchemy.orm import Session
 from prompt_toolkit import prompt
 from database import init_db, get_db
 from models import User, Post, Comment
-import hashlib
 
 def hash_password(password):
     return password
